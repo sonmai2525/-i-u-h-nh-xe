@@ -1,0 +1,23 @@
+WEB ĐIỀU HÀNH XE V1.2 - QUẢN TRỊ TÀI KHOẢN
+
+Tính năng
+- Menu Quản trị tài khoản: chỉ thấy khi đăng nhập đúng vansonvanhai27@gmail.com và role Quản trị viên.
+- Gửi thư mời qua email để tạo tài khoản mới (không quản lý mật khẩu của người khác).
+- Liệt kê người dùng Supabase Auth và vai trò trong dispatch_profiles.
+- Đổi vai trò: Người đề nghị / Lãnh đạo / Cán bộ điều xe / Lái xe.
+- Không cho thay đổi hoặc tạo thêm vai trò Quản trị viên.
+- Nếu tạo tài khoản Lái xe, liên kết hồ sơ lái xe trong danh sách sẵn có.
+
+CÁC BƯỚC CÀI ĐẶT (BẮT BUỘC)
+1. Supabase > SQL Editor: chạy file supabase/upgrade_v1_2.sql trên project Điều hành xe đang sử dụng (KHÔNG chạy lại schema.sql; KHÔNG thay bảng hay xóa dữ liệu).
+2. Supabase > Edge Functions: tạo function tên CHÍNH XÁC dispatch-admin; dán nội dung supabase/functions/dispatch-admin/index.ts và Deploy. Cần bật xác minh JWT theo mặc định, và môi trường function phải có SUPABASE_URL, SUPABASE_ANON_KEY, SUPABASE_SERVICE_ROLE_KEY (thường là biến tích hợp sẵn của Supabase). KHÔNG nhập service_role vào Vercel, GitHub hoặc ứng dụng React.
+3. Supabase > Authentication > URL Configuration: đặt Site URL là https://dieu-hanh-xe-psi.vercel.app (nếu đây là domain chính xác), cấu hình Redirect URLs phù hợp, để thư mời mở đúng web.
+4. Upload mã nguồn V1.2 lên GitHub repository hiện tại (ghi đè src/main.jsx, thêm function/SQL, giữ cấu trúc gốc). Không upload .env.local hoặc node_modules.
+5. Vercel tự deploy sau khi GitHub cập nhật. Giữ nguyên 2 biến VITE_SUPABASE_URL và VITE_SUPABASE_ANON_KEY đã hoạt động.
+6. Đăng nhập bằng vansonvanhai27@gmail.com, mở menu Quản trị tài khoản, thử mời một email khác. Người nhận dùng link email để đặt mật khẩu. Nếu link mời không cho đặt mật khẩu, cần bổ sung giao diện cập nhật mật khẩu qua Supabase Auth hoặc sử dụng luồng reset password.
+
+LƯU Ý BẢO MẬT
+- Người dùng thường không có quyền gửi lời mời, xem danh sách email toàn hệ thống hoặc sửa vai trò.
+- Các chính sách RLS cũ vẫn quyết định ai được xem/tạo/duyệt/điều phối yêu cầu; việc ẩn menu không thay thế quyền ở database.
+- V1.2 chưa có màn hình khóa tài khoản hay nhật ký sự kiện thay đổi quyền riêng; sẽ nâng cấp ở bản sau.
+- Chưa test end-to-end trên một Supabase đang chạy thật. Phải thử bằng 2 tài khoản khác vai trò trước khi triển khai toàn đơn vị.
