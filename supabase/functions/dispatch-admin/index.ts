@@ -34,7 +34,7 @@ serve(async(req)=>{
    const password=String(body.password||'');
    const role=String(body.role||'');
    const driver_id=role==='Lái xe'?(body.driver_id||null):null;
-   if(!/^[a-z][a-z0-9_]{2,31}$/.test(username)||!full_name||full_name.length>150||password.length<10||password.length>128||!roles.includes(role)||role==='Quản trị viên')return respond({error:'Tên đăng nhập, mật khẩu, tên hoặc vai trò không hợp lệ'},400);
+   if(!/^[a-z][a-z0-9_]{2,31}$/.test(username)||!full_name||full_name.length>150||password.length<6||password.length>128||!roles.includes(role)||role==='Quản trị viên')return respond({error:'Tên đăng nhập, mật khẩu, tên hoặc vai trò không hợp lệ'},400);
    if(role==='Lái xe'&&driver_id){const {data:driver}=await admin.from('dispatch_drivers').select('id').eq('id',driver_id).maybeSingle();if(!driver)return respond({error:'Không tìm thấy hồ sơ lái xe'},400)}
    const email=`${username}@${INTERNAL_DOMAIN}`;
    const {data:created,error:ce}=await admin.auth.admin.createUser({email,password,email_confirm:true,user_metadata:{internal_username:username,must_change_password:true}});
@@ -49,7 +49,7 @@ serve(async(req)=>{
    if(te||!target.user)return respond({error:'Không tìm thấy tài khoản'},404);
    if(target.user.email?.toLowerCase()===OWNER)return respond({error:'Không được thay đổi Super Admin'},403);
    const attrs=body.action==='setLocked'?{ban_duration:body.locked?'876000h':'none'}:{password:String(body.password||'')};
-   if(body.action==='resetPassword'&&(String(body.password||'').length<10||String(body.password||'').length>128))return respond({error:'Mật khẩu không hợp lệ'},400);
+   if(body.action==='resetPassword'&&(String(body.password||'').length<6||String(body.password||'').length>128))return respond({error:'Mật khẩu không hợp lệ'},400);
    const {error:ue}=await admin.auth.admin.updateUserById(id,attrs);
    if(ue)return respond({error:ue.message},400);
    return respond({ok:true,note:body.action==='setLocked'?'Khóa/mở khóa có hiệu lực với đăng nhập mới; phiên đang hoạt động cần kiểm soát bổ sung.':undefined});
