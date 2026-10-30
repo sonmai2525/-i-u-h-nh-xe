@@ -1,0 +1,25 @@
+WEB DIEU HANH XE - V1.0
+======================
+DU AN HOAN TOAN DOC LAP VOI WEB V34.
+
+CHAY THU TREN WINDOWS
+1. Giai nen file ZIP (Extract All).
+2. Cai Node.js LTS neu may chua co: https://nodejs.org/
+3. Mo thu muc WEB_DIEU_HANH_XE_V1 va nhap dup CHAY_WEB.bat.
+4. Cho thu vien cai xong neu la lan dau; mo http://localhost:5173
+5. KHONG nhap dup index.html (day la du an React/Vite).
+6. Neu trang chua hien, giu cua so lenh mo, thu tai lai dia chi tren.
+
+CHE DO DEMO: Khong can Supabase. Du lieu luu trong trinh duyet may do. Chon vai tro goc phai de thu quy trinh.
+
+CHE DO NHIỀU TAI KHOAN / SUPABASE RIENG
+1. Tao 1 project Supabase MOI; khong dung project V34.
+2. SQL Editor > chay supabase/schema.sql.
+3. Copy .env.example thanh .env.local, dien URL va anon key cua Supabase moi.
+4. Khoi dong lai CHAY_WEB.bat; su dung Supabase Auth de tao users.
+5. Quan tri vien can tao ho so vai tro trong bang dispatch_profiles (theo huong dan SQL).
+6. Supabase Auth / RLS bat buoc cho su dung that.
+
+GHI CHU: Thong bao den lai xe hien tai la tren man hinh tai khoan lai xe, chua phat push/Zalo/SMS.
+Phieu dieu xe la phieu A4 in/Luu PDF, phan chu ky de ky tay, chua ho tro chu ky so.
+Du lieu demo khong tu dong chuyen sang Supabase.
