@@ -35,3 +35,77 @@ html,body,#root{min-width:0;width:100%;max-width:100%;overflow-x:hidden}
 
 /* V1.5 notifications */
 .push-wrap{position:relative;display:flex;align-items:center}.push-bell{background:transparent;border:0;cursor:pointer;color:inherit;position:relative;padding:10px}.push-count{position:absolute;right:1px;top:0;border-radius:14px;background:#dc2626;color:white;padding:1px 5px;font-size:10px}.push-pop{position:absolute;top:calc(100% + 12px);right:0;width:min(365px,90vw);max-height:420px;overflow:auto;z-index:1000;background:white;color:#132b49;box-shadow:0 10px 40px #152e5060;border:1px solid #dce5f0;border-radius:12px;padding:12px}.push-pop>b{display:block;padding:9px}.push-pop>button{display:flex;flex-direction:column;text-align:left;width:100%;padding:12px;border:0;border-top:1px solid #e2e8f0;background:white;color:inherit;gap:4px;cursor:pointer}.push-pop>button.push-new{background:#eff6ff}.push-pop small{font-size:12px;color:#64748b}.push-pop p{padding:12px}
+
+
+/* V1.7 — responsive polish. Desktop behavior and business flows unchanged. */
+.password-short{display:none}
+.mobile-records{display:none}
+@media(max-width:760px){
+  .app-header{
+    display:grid;
+    grid-template-columns:44px minmax(0,1fr) 42px 36px;
+    grid-template-rows:minmax(46px,auto) auto;
+    align-items:center;
+    gap:8px 9px;
+    height:auto;
+    min-height:0;
+    padding:10px 12px 12px;
+    padding-top:calc(10px + env(safe-area-inset-top, 0px));
+    overflow:visible;
+  }
+  .app-header>.hamb{grid-column:1;grid-row:1;width:44px;height:44px}
+  .app-header>.headerTitle{grid-column:2;grid-row:1;min-width:0;overflow:hidden}
+  .app-header>.headerTitle strong{font-size:15px;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .app-header .headerRight{display:contents}
+  .app-header .push-wrap{grid-column:3;grid-row:1;justify-self:center}
+  .app-header .push-bell{height:42px;width:42px;display:grid;place-items:center;border-radius:12px;background:#f2f6fd;color:#245b9e}
+  .app-header .logout-btn{grid-column:4;grid-row:1;justify-self:center;display:grid;place-items:center;width:36px;height:42px}
+  .app-header .role-select{grid-column:1 / 3;grid-row:2;width:100%;max-width:none!important;min-width:0;height:43px;overflow:hidden;text-overflow:ellipsis;border-radius:10px;font-size:13px!important;padding:7px 8px!important;background:#f7faff;color:#263954;opacity:1;-webkit-text-fill-color:#263954}
+  .app-header .web-notify-btn{grid-column:3 / 5;grid-row:2;min-width:0;max-width:none;width:100%;height:43px;font-size:12px!important;padding:7px 10px!important;white-space:normal;line-height:1.2;text-align:center;background:#eaf3ff;border-color:#c9dff9;color:#1d5caa}
+  .app-header .password-btn{grid-column:1 / -1;grid-row:3;width:100%;min-width:0;min-height:38px;font-size:12px!important;padding:7px 12px!important;background:transparent;border:1px solid #e2e9f3;color:#5a6e87}
+  .app-header .password-btn::before{content:none!important;display:none!important}
+  .app-header .password-full{display:none}
+  .app-header .password-short{display:inline}
+  /* The password row is compact; no false "Đổi MK" labels on push button. */
+  .app-header .push-pop{position:fixed;top:calc(73px + env(safe-area-inset-top, 0px));left:12px;right:12px;width:auto;max-height:min(68dvh,520px);z-index:1000}
+  .content{padding:16px 12px calc(26px + env(safe-area-inset-bottom, 0px))}
+  .welcome{gap:12px;margin-bottom:18px}
+  .welcome h1{font-size:clamp(20px,5vw,25px);line-height:1.24;margin:7px 0}
+  .welcome p{font-size:13px;line-height:1.55}
+  .statgrid{gap:10px;margin-bottom:18px}
+  .stat{min-height:104px;padding:15px 13px;border-radius:15px;box-shadow:0 2px 14px #122a4510}
+  .stat span{font-size:12px}
+  .stat strong{font-size:28px;margin-top:9px;letter-spacing:-.6px}
+  .statIcon{width:39px;height:39px;min-width:39px;border-radius:12px}
+  .panel{border-radius:15px}
+  .panelhead{padding:18px 15px 14px}
+  .panelhead .btn{min-height:42px}
+  .mobile-records{display:grid;gap:11px;padding:4px 12px 14px}
+  .mobile-record{border:1px solid #e5eaf2;background:#fff;border-radius:14px;padding:14px;box-shadow:0 2px 10px #172b440a;min-width:0}
+  .mobile-record-top{display:flex;justify-content:space-between;align-items:center;gap:9px;flex-wrap:wrap}
+  .mobile-record-code{font-size:12px;color:#64758b;font-weight:700}
+  .mobile-record .badge{max-width:100%;white-space:normal;text-align:center}
+  .mobile-record-unit{font-size:16px;line-height:1.35;color:#203654;font-weight:800;margin-top:13px;overflow-wrap:anywhere}
+  .mobile-record-purpose{font-size:13px;color:#64758b;margin:5px 0 11px;line-height:1.5;overflow-wrap:anywhere}
+  .mobile-record-meta{display:grid;gap:8px;font-size:12px;color:#506782}
+  .mobile-record-meta span{display:flex;align-items:center;gap:8px;min-width:0;overflow-wrap:anywhere}
+  .mobile-record-meta svg{color:#3474bf;flex-shrink:0}
+  .mobile-record-action{width:100%;margin-top:13px;min-height:43px;background:#f0f6ff;border-color:#d9e8fc;color:#1b5cb1}
+  /* Tables of requests become readable cards; other management tables remain scrollable. */
+  .mobile-records+.tablewrap{display:none}
+  .tablewrap:after{font-size:11px}
+  .dialoghead{padding-top:calc(15px + env(safe-area-inset-top, 0px))}
+  .dialog .actions{position:sticky;bottom:0;background:white;padding:12px 0 calc(10px + env(safe-area-inset-bottom, 0px));z-index:2;border-top:1px solid #e9edf4}
+  .toast{z-index:1002}
+}
+@media(min-width:540px) and (max-width:760px){
+  .app-header{grid-template-columns:44px minmax(0,1fr) 42px 36px}
+  .app-header .role-select{grid-column:1 / 3}
+  .mobile-records{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:360px){
+  .app-header{gap:7px}
+  .app-header .web-notify-btn{font-size:11px!important}
+  .stat{padding:12px 9px}
+  .statIcon{width:32px;height:32px;min-width:32px}
+}
