@@ -32,3 +32,6 @@ html,body,#root{min-width:0;width:100%;max-width:100%;overflow-x:hidden}
 }
 @media(max-width:390px){.headerRight select{max-width:95px}.content{padding:12px 9px}.stat{padding:12px 9px}.stat strong{font-size:24px}.statIcon{width:30px;height:30px;min-width:30px}.headerRight .btn.sm{padding:6px}}
 @media print{.mobile-backdrop{display:none!important}.dialog{height:auto;max-height:none;overflow:visible}.tablewrap:after{display:none}}
+
+/* V1.5 notifications */
+.push-wrap{position:relative;display:flex;align-items:center}.push-bell{background:transparent;border:0;cursor:pointer;color:inherit;position:relative;padding:10px}.push-count{position:absolute;right:1px;top:0;border-radius:14px;background:#dc2626;color:white;padding:1px 5px;font-size:10px}.push-pop{position:absolute;top:calc(100% + 12px);right:0;width:min(365px,90vw);max-height:420px;overflow:auto;z-index:1000;background:white;color:#132b49;box-shadow:0 10px 40px #152e5060;border:1px solid #dce5f0;border-radius:12px;padding:12px}.push-pop>b{display:block;padding:9px}.push-pop>button{display:flex;flex-direction:column;text-align:left;width:100%;padding:12px;border:0;border-top:1px solid #e2e8f0;background:white;color:inherit;gap:4px;cursor:pointer}.push-pop>button.push-new{background:#eff6ff}.push-pop small{font-size:12px;color:#64748b}.push-pop p{padding:12px}
